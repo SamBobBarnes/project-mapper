@@ -1,4 +1,5 @@
 ﻿import fs from 'fs';
+import * as child_process from "node:child_process";
 
 const projectPath = process.argv[2];
 
@@ -20,6 +21,9 @@ if (!packageJson.dependencies) {
     console.error('No dependencies section found in package.json.');
     process.exit(1);
 }
+
+console.log('Installing dependencies...');
+child_process.execSync('npm i', { cwd: projectPath });
 
 const dependencies = packageJson.dependencies;
 const devDependencies = packageJson.devDependencies || {};
@@ -49,6 +53,8 @@ const buildDependencyTree = (depName, visited = new Set()) => {
 const dependencyTree = Object.keys(dependencies).map(dep => buildDependencyTree(dep));
 
 console.log(JSON.stringify(dependencyTree, null, 2));
+
+
 //
 // const writeToMermaid = (depTree) => {
 //     let mermaidStr = 'flowchart TD\n';
