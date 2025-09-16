@@ -49,3 +49,24 @@ const buildDependencyTree = (depName, visited = new Set()) => {
 const dependencyTree = Object.keys(dependencies).map(dep => buildDependencyTree(dep));
 
 console.log(JSON.stringify(dependencyTree, null, 2));
+//
+// const writeToMermaid = (depTree) => {
+//     let mermaidStr = 'flowchart TD\n';
+//     const edges = new Set();
+//
+//     const traverse = (node) => {
+//         if (node.children) {
+//             node.children.forEach(child => {
+//                 edges.add(`    ["${node.name}"] --> ["${child.name}"]`);
+//                 traverse(child);
+//             });
+//         }
+//     };
+//     depTree.forEach(traverse);
+//     mermaidStr += Array.from(edges).join('\n');
+//     return mermaidStr;
+// };
+//
+// const mermaidOutput = writeToMermaid(dependencyTree);
+// fs.writeFileSync(`${projectPath}/dependency-tree.mmd`, mermaidOutput);
+// console.log(`Mermaid diagram written to ${projectPath}/dependency-tree.mmd`);
