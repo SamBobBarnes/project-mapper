@@ -121,9 +121,8 @@ const htmlContent = `
             mermaid.initialize({
                 startOnLoad: true,
                 theme: 'default',
-                flowchart: {
-                    maxEdges: 2000 
-                },
+                flowchart: {},
+                maxEdges: 2000,
                 maxTextSize: 100000,
             });
         </script>
